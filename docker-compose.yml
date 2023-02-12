@@ -1,0 +1,30 @@
+
+version: "3.6"
+services:          
+             
+  cmj-client:
+    image: "cmjsoftware1/cmj-website"
+    container_name: "cmj-website"
+    restart: always
+    ports:
+      - "4200:4200"
+    env_file:
+      - .env
+    volumes:
+      - ./client:/app/client
+           
+  cmj-api:
+    image: "cmjsoftware1/cmj-api-srv"
+    container_name: "cmj-api-srv"
+    restart: always
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    volumes:
+      - ./api:/app/api
+          
+networks:
+  default:
+    driver: bridge        
+            
